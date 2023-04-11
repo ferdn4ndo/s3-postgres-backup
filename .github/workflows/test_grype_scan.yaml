@@ -1,0 +1,73 @@
+name: Check for vulnerabilities
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '**.md'
+    tags-ignore:
+      - '**'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs: # Docs: <https://git.io/JvxXE>
+  scan-image:
+    name: Check for packages vulnerabilities with Grype
+    runs-on: ubuntu-20.04
+    env:
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      SCHEDULE: "@every 6h"
+      ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
+      TEMP_PATH: "/temp"
+      XZ_COMPRESSION_LEVEL: 6
+      BACKUP_PREFIX: "postgres-test-dump"
+      RUN_AT_STARTUP: 1
+      STARTUP_BKP_DELAY_SECS: 5
+      S3_REGION: ${{ vars.S3_REGION }}
+      S3_BUCKET: ${{ vars.S3_BUCKET }}
+      S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+      S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+      S3_PREFIX: postgres
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build docker image
+        run: docker build -f ./Dockerfile --tag s3-postgres-backup:local .
+
+      - name: Configure grype
+        run: cat ./.grype.yaml && cp .grype.yaml ~/
+
+      - name: Scan image
+        uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
+        id: scan
+        with:
+          image: s3-postgres-backup:local
+          fail-build: false
+          severity-cutoff: low # negligible, low, medium, high or critical
+
+      - name: Upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      - name: Inspect action SARIF report
+        id: scanReportOutput
+        run: cat ${{ steps.scan.outputs.sarif }}
+
+      - name: Test output of scan report
+        run: |
+          scanResults=$(cat ${{ steps.scan.outputs.sarif }} | jq -r '.runs[0].results')
+          echo "Results: "
+          if [ "$scanResults" == "[]" ]; then
+            echo "NO VULNERABILITY DETECTED"
+          else
+            echo "VULNERABILITIES DETECTED! Results: $scanResults"
+            exit 1;
+          fi
