@@ -1,0 +1,85 @@
+name: Run the E2E ATs
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '**.md'
+    tags-ignore:
+      - '**'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs: # Docs: <https://git.io/JvxXE>
+  run-ats:
+    name: Run the End-to-End (E2E) Automated Tests (AT)
+    runs-on: ubuntu-20.04
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    env:
+      POSTGRES_HOST: "localhost"
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      SCHEDULE: "@every 6h"
+      ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
+      TEMP_PATH: "/temp"
+      XZ_COMPRESSION_LEVEL: 6
+      BACKUP_PREFIX: "postgres-test-dump"
+      RUN_AT_STARTUP: 1
+      STARTUP_BKP_DELAY_SECS: 5
+      S3_REGION: ${{ vars.S3_REGION }}
+      S3_BUCKET: ${{ vars.S3_BUCKET }}
+      S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+      S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+      S3_PREFIX: postgres
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build docker image
+        run: docker build -f ./Dockerfile --tag s3-postgres-backup:local .
+
+      - name: Try to run container
+        run: >
+          docker run -d --rm
+          --env POSTGRES_HOST="$POSTGRES_HOST"
+          --env POSTGRES_PORT="$POSTGRES_PORT"
+          --env POSTGRES_USER="$POSTGRES_USER"
+          --env POSTGRES_PASSWORD="$POSTGRES_PASSWORD"
+          --env SCHEDULE="$SCHEDULE"
+          --env ENCRYPTION_PASSWORD="$ENCRYPTION_PASSWORD"
+          --env TEMP_PATH="$TEMP_PATH"
+          --env XZ_COMPRESSION_LEVEL="$XZ_COMPRESSION_LEVEL"
+          --env BACKUP_PREFIX="$BACKUP_PREFIX"
+          --env RUN_AT_STARTUP="$RUN_AT_STARTUP"
+          --env STARTUP_BKP_DELAY_SECS="$STARTUP_BKP_DELAY_SECS"
+          --env S3_REGION="$S3_REGION"
+          --env S3_BUCKET="$S3_BUCKET"
+          --env S3_ACCESS_KEY_ID="$S3_ACCESS_KEY_ID"
+          --env S3_SECRET_ACCESS_KEY="$S3_SECRET_ACCESS_KEY"
+          --env S3_PREFIX="$S3_PREFIX"
+          --net=host
+          --name s3-postgres-backup
+          s3-postgres-backup:local
+
+      - name: Run ATs with coverage check
+        run: docker exec -i s3-postgres-backup sh -c "cd scripts && ./test.sh"

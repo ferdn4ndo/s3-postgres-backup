@@ -1,0 +1,29 @@
+name: Check for code leaks
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '**.md'
+    tags-ignore:
+      - '**'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs: # Docs: <https://git.io/JvxXE>
+  check-gitleaks:
+    name: Check for code leaks with GitLeaks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check for GitLeaks
+        uses: gitleaks/gitleaks-action@v2 # Action page: <https://github.com/gitleaks/gitleaks-action>
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
