@@ -1,12 +1,12 @@
 # S3 Postgres Backup
 
 [![GitLeaks badge](https://img.shields.io/badge/protected%20by-GitLeaks-blue)](https://github.com/gitleaks/gitleaks-action/)
-[![GitLeaks test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_leaks.yml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
+[![GitLeaks test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_leaks.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![Grype badge](https://img.shields.io/badge/protected%20by-Grype-blue)](https://github.com/anchore/grype)
-[![Grype test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_grype_scan.yml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
+[![Grype test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_grype_scan.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![ShellCheck badge](https://img.shields.io/badge/code%20quality%20by-ShellCheck-blue)](https://github.com/koalaman/shellcheck)
-[![ShellCheck test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_quality.yml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
-[![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_e2e.yml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
+[![ShellCheck test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_quality.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
+[![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_e2e.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![Release](https://img.shields.io/github/v/release/ferdn4ndo/s3-postgres-backup)](https://github.com/ferdn4ndo/s3-postgres-backup/releases)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
@@ -52,7 +52,7 @@ docker run -rm  -v "./backup/scripts:/backup/scripts" -v ./backup/temp:/backup/t
 
 To execute the ATs, make sure that both the `s3-postgres-backup` container and a `postgres` instance are up and running.
 
-This can be achieved by running the `docker-compose.yml` file:
+This can be achieved by running the `docker-compose.yaml` file:
 
 ```bash
 docker compose up --build --remove-orphans
