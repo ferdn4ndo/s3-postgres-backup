@@ -1,4 +1,4 @@
-name: Check codebase quality
+name: Codebase Quality
 
 on:
   push:

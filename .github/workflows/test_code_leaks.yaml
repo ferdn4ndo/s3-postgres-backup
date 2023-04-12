@@ -1,4 +1,4 @@
-name: Check for code leaks
+name: Code Leaks Check
 
 on:
   push:
