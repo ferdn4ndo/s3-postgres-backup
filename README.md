@@ -27,6 +27,7 @@ An Alpine-based docker image to automatically perform periodic dumps of a Postgr
   * [Requirements](#requirements)
   * [Preparing the environment](#preparing-the-environment)
   * [Building the image](#building-the-image)
+  * [Running in docker-compose](#running-in-docker-compose)
 * [Configuring](#configuring)
   * [General Configuration](#general-configuration)
     * [SCHEDULE](#schedule)
@@ -87,7 +88,26 @@ docker build -f ./Dockerfile --tag s3-postgres-backup:latest
 After setting up the environment and building the image, you can now launch a container with it. Considering the 000, use the following command in the project root folder:
 
 ```bash
-docker run -rm  -v "./backup/scripts:/backup/scripts" -v ./backup/temp:/backup/temp --env-file ./.env --name "s3-postgres-backup"  s3-postgres-backup:latest
+docker run --rm -v "./scripts:/backup/scripts" --env-file ./.env --name "s3-postgres-backup" s3-postgres-backup:latest
+```
+
+### Running in docker-compose
+
+As this repository has a Docker image available for pulling, we can add this service to an existing stack by creating a service using the `ferdn4ndo/s3-postgres-backup:latest` identifier:
+
+```yaml
+services:
+  ...
+  s3-postgres-backup:
+    image: ferdn4ndo/s3-postgres-backup:latest
+    container_name: s3-postgres-backup
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres # Adjust it to the database service name
+                 # so it waits for a healthy state before
+                 # backing up the data.
+  ...
 ```
 
 ## Configuring
