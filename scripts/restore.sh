@@ -11,13 +11,16 @@ printTitle "Database Backup Restoration"
 ########################################################
 ## Environment check section
 ########################################################
-checkAllEnvironemntVariables
+checkAllEnvironmentVariables
 
 AWS_ARGS="$(getAwsCliArgs)"
 
 ########################################################
 ## Environment setup section
 ########################################################
+
+TEMP_PATH="${TEMP_PATH:-/temp}"
+POSTGRES_PORT="${POSTGRES_PORT:-5432}"
 
 # env vars needed for aws tools
 export AWS_ACCESS_KEY_ID=$S3_ACCESS_KEY_ID
