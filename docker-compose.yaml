@@ -26,7 +26,6 @@ services:
       - ./.env
     volumes:
       - ./scripts:/backup/scripts
-      - ./temp:/backup/temp
     depends_on:
       - postgres
 

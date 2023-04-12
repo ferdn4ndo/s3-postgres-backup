@@ -56,7 +56,14 @@ jobs: # Docs: <https://git.io/JvxXE>
         uses: actions/checkout@v3
 
       - name: Build docker image
-        run: docker build -f ./Dockerfile --tag s3-postgres-backup:local .
+        run: >
+          docker build
+          --file ./Dockerfile
+          --tag s3-postgres-backup:local
+          --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          --build-arg BUILD_VERSION=${{ github.event.release.tag_name }}
+          --build-arg VCS_REF=${GITHUB_SHA}
+          .
 
       - name: Try to run container
         run: >
