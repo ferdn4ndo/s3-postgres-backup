@@ -2,7 +2,16 @@
 
 set -e
 
+source /backup/scripts/functions.sh
+
+checkAllEnvironmentVariables
+
 cd /backup/scripts
+
+TEMP_PATH="${TEMP_PATH:-/temp}"
+RUN_AT_STARTUP="${RUN_AT_STARTUP:-1}"
+STARTUP_BKP_DELAY_SECS="${STARTUP_BKP_DELAY_SECS:-5}"
+SCHEDULE="${SCHEDULE:-@every 6h}"
 
 if [ "${S3_S3V4}" = "yes" ]; then
   echo "Configuring S3V4 Signature"
