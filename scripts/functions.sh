@@ -51,6 +51,7 @@ function getQueryResponse() {
 
     POSTGRES_PORT="${POSTGRES_PORT:-5432}"
 
+    # shellcheck disable=SC2153
     POSTGRES_HOST_OPTS="-h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER $POSTGRES_EXTRA_OPTS"
 
     database="${1}"

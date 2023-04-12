@@ -10,6 +10,7 @@ POSTGRES_DB="test"
 
 export PGPASSWORD=$POSTGRES_PASSWORD
 POSTGRES_PORT="${POSTGRES_PORT:-5432}"
+# shellcheck disable=SC2153
 POSTGRES_HOST_OPTS="-h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER $POSTGRES_EXTRA_OPTS"
 
 export AWS_ACCESS_KEY_ID=$S3_ACCESS_KEY_ID
@@ -17,9 +18,6 @@ export AWS_SECRET_ACCESS_KEY=$S3_SECRET_ACCESS_KEY
 export AWS_DEFAULT_REGION=$S3_REGION
 
 printHeader "Test Suite for s3-postgres-backup"
-
-printTitle "Checking environment variables"
-checkAllEnvironmentVariables
 
 printTitle "Populating dataset"
 # shellcheck disable=SC2086
