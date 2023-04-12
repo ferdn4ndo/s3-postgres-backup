@@ -1,12 +1,9 @@
 # S3 Postgres Backup
 
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ferdn4ndo/s3-postgres-backup/latest)
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ferdn4ndo/s3-postgres-backup/latest)](https://hub.docker.com/r/ferdn4ndo/s3-postgres-backup)
 [![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_e2e.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
-[![GitLeaks badge](https://img.shields.io/badge/protected%20by-GitLeaks-blue)](https://github.com/gitleaks/gitleaks-action/)
 [![GitLeaks test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_leaks.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
-[![Grype badge](https://img.shields.io/badge/protected%20by-Grype-blue)](https://github.com/anchore/grype)
 [![Grype test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_grype_scan.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
-[![ShellCheck badge](https://img.shields.io/badge/code%20quality%20by-ShellCheck-blue)](https://github.com/koalaman/shellcheck)
 [![ShellCheck test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_quality.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![Release](https://img.shields.io/github/v/release/ferdn4ndo/s3-postgres-backup)](https://github.com/ferdn4ndo/s3-postgres-backup/releases)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
