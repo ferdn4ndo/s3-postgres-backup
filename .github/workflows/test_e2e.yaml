@@ -1,4 +1,4 @@
-name: Run the E2E ATs
+name: E2E Tests
 
 on:
   push:
