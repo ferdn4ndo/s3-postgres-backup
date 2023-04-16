@@ -5,6 +5,7 @@ set -o pipefail
 
 # shellcheck disable=SC1091
 source ./asserts.sh
+# shellcheck disable=SC1091
 source ./functions.sh
 
 ###

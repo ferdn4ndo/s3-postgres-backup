@@ -10,6 +10,8 @@
 
 An Alpine-based docker image to automatically perform periodic dumps of a Postgres server to an S3 bucket. Supports encryption, compression, and restoration. Protected against code leakage by [GitLeaks](https://github.com/gitleaks/gitleaks-action/) and package vulnerabilities by [Anchore Grype](https://github.com/anchore/grype). CI pipeline with code quality check by [Shellcheck](https://github.com/koalaman/shellcheck) and internal E2E Automated Tests (ATs).
 
+**Based on the project [postgresql-backup-s3](https://github.com/itbm/postgresql-backup-s3) by [itbm](https://github.com/itbm/postgresql-backup-s3/commits?author=itbm).**
+
 ## Main features
 
 * Supports setting up a custom interval for the backup generation;
@@ -56,6 +58,8 @@ An Alpine-based docker image to automatically perform periodic dumps of a Postgr
 * [Contributing](#contributing)
   * [Contributors](#contributors)
 * [License](#license)
+
+## How to Run?
 
 ### Requirements
 
@@ -284,7 +288,29 @@ Default: *EMPTY*
 
 ## Testing
 
-To execute the ATs, make sure that both the `s3-postgres-backup` container and a `postgres` instance are up and running.
+The repository pipelines include testing for code leaks at [.github/workflows/test_code_leaks.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_leaks.yaml), testing for package vulnerabilities at [.github/workflows/test_grype_scan.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_grype_scan.yaml), testing for code quality at [.github/workflows/test_code_quality.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_quality.yaml), and UTs (which will call the `run_*_tests.sh` scripts) + E2E functional tests at [.github/workflows/test_ut_e2e.yaml](https://github.com/ferdn4ndo/docker-containers-monitor/blob/main/.github/workflows/test_ut_e2e.yaml), which are described in the sections below.
+
+### Unit Tests (UTs)
+
+To execute the UTs, make sure that both the `s3-postgres-backup` container is up and running.
+
+This can be achieved by running the `docker-compose.yaml` file:
+
+```bash
+docker compose up --build --remove-orphans
+```
+
+Then, after the container is up and running, execute this command in the terminal to run the test script inside the `s3-postgres-backup` container:
+
+```bash
+docker exec -it docker-containers-monitor sh -c "./run_unit_tests.sh"
+```
+
+The script will successfully execute if all the tests have passed or will abort with an error otherwise. The output is verbose, give a check.
+
+### End-to-End (E2E) Tests
+
+To execute the ATs (as in the UTs), make sure that both the `s3-postgres-backup` container and a `postgres` instance are up and running.
 
 This can be achieved by running the `docker-compose.yaml` file:
 
@@ -295,12 +321,10 @@ docker compose up --build --remove-orphans
 Then, after both containers are up and running, run the test script inside the `s3-postgres-backup` container:
 
 ```bash
-docker exec -i s3-postgres-backup sh -c "cd scripts && ./test.sh"
+docker exec -it docker-containers-monitor sh -c "./run_e2e_tests.sh"
 ```
 
 The script will execute with success if all the tests have passed or will abort with an error otherwise. The output is verbose, give a check.
-
-The repository pipelines also include testing for code leaks at [.github/workflows/test_code_leaks.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_leaks.yaml), testing for package vulnerabilities at [.github/workflows/test_grype_scan.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_grype_scan.yaml), testing for code quality at [.github/workflows/test_code_quality.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_quality.yaml), and E2E ATs (which will call the `./test.sh` script) at [.github/workflows/test_e2e.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_quality.yaml).
 
 ## Contributing
 
@@ -311,6 +335,14 @@ Any help is appreciated! Feel free to review, open an issue, fork, and/or open a
 ### Contributors
 
 [ferdn4ndo](https://github.com/ferdn4ndo)
+
+The acknowledgements are also extended to the original [postgresql-backup-s3](https://github.com/itbm/postgresql-backup-s3) contributors:
+
+[itbm](https://github.com/itbm)
+
+[Baran Kaynak](https://github.com/barankaynak)
+
+[Vladimir Polyakov](https://github.com/Skadabr)
 
 ## License
 
