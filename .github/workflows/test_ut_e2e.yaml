@@ -1,4 +1,4 @@
-name: E2E Tests
+name: UTs & E2E Tests
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
 
 jobs: # Docs: <https://git.io/JvxXE>
   run-ats:
-    name: Run the End-to-End (E2E) Automated Tests (AT)
+    name: Run the Unit Tests (UTs) and the End-to-End (E2E) Automated Test (AT)
     runs-on: ubuntu-20.04
     services:
       # Label used to access the service container
@@ -88,5 +88,8 @@ jobs: # Docs: <https://git.io/JvxXE>
           --name s3-postgres-backup
           s3-postgres-backup:local
 
-      - name: Run ATs with coverage check
-        run: docker exec -i s3-postgres-backup sh -c "cd scripts && ./test.sh"
+      - name: Run the Unit Tests (UTs)
+        run: docker exec -i s3-postgres-backup sh -c "./run_unit_tests.sh"
+
+      - name: Run the End-to-End (E2E) tests
+        run: docker exec -i s3-postgres-backup sh -c "./run_e2e_tests.sh"
