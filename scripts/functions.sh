@@ -4,32 +4,8 @@ set -e
 set -o pipefail
 
 # shellcheck disable=SC1091
-source /backup/scripts/strings.sh
-
-function assertEnvironmentVariableNotEmpty() {
-    var="${1}"
-    eval value="\$${var}"
-
-    if [ -z "$value" ]; then
-        printFailure "You need to set the '$var' environment variable."
-        exit 1
-    fi
-}
-
-function assertEnvironmentVariableNotEmptyOrDefault() {
-    var="${1}"
-    eval value="\$${var}"
-
-    if [ -z "$value" ]; then
-        printFailure "You need to set the '$var' environment variable."
-        exit 1
-    fi
-
-    if [[ "$value" == "${2}" ]]; then
-        printFailure "The default value for the ${1} environment variable must be replaced before running the service!"
-        exit 1
-    fi
-}
+source ./asserts.sh
+source ./strings.sh
 
 function checkAllEnvironmentVariables() {
     assertEnvironmentVariableNotEmpty "SCHEDULE"
