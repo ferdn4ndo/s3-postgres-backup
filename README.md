@@ -1,7 +1,7 @@
 # S3 Postgres Backup
 
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ferdn4ndo/s3-postgres-backup/latest)](https://hub.docker.com/r/ferdn4ndo/s3-postgres-backup)
-[![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_e2e.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
+[![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_ut_e2e.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![GitLeaks test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_leaks.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![Grype test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_grype_scan.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![ShellCheck test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_quality.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
