@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # shellcheck disable=SC1091
-source /backup/scripts/colors.sh
+source ./colors.sh
 
 function printMsg() {
     if [ -z "$2" ]; then

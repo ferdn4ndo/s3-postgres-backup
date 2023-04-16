@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # shellcheck disable=SC1091
-source /backup/scripts/functions.sh
+source ./functions.sh
 
 printTitle "Database Backup Creation"
 

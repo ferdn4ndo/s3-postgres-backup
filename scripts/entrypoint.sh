@@ -3,11 +3,9 @@
 set -e
 
 # shellcheck disable=SC1091
-source /backup/scripts/functions.sh
+source ./functions.sh
 
 checkAllEnvironmentVariables
-
-cd /backup/scripts
 
 TEMP_PATH="${TEMP_PATH:-/temp}"
 RUN_AT_STARTUP="${RUN_AT_STARTUP:-1}"

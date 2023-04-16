@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # shellcheck disable=SC1091
-source /backup/scripts/functions.sh
+source ./functions.sh
 
 POSTGRES_DB="test"
 
@@ -72,7 +72,7 @@ response=$(getQueryResponse "${POSTGRES_DB}" "SELECT country FROM table2 WHERE c
 assertStringEquals "$response" "UK"
 
 printMsg "Performing backup operation"
-backupResponse=$(/backup/scripts/backup.sh)
+backupResponse=$(./backup.sh)
 printMsg "Backup operation response:"
 printMsg "${backupResponse}"
 printMsg "Asserting that the final upload operation was successful"
@@ -96,7 +96,7 @@ tablesCount=$(getDatabaseTablesCount "${POSTGRES_DB}")
 assertStringEquals "${tablesCount}" "0"
 
 printMsg "Performing restore operation"
-restoreResponse=$(/backup/scripts/restore.sh "${backupFilename}")
+restoreResponse=$(./restore.sh "${backupFilename}")
 printMsg "Restore operation response:"
 printMsg "${restoreResponse}"
 printMsg "Asserting that the final restore operation was successful"

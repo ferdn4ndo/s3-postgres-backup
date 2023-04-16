@@ -10,14 +10,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.name="ferdn4ndo/s3-postgres-backup"
 LABEL org.label-schema.description="A lightweight docker image to automatically perform periodic dumps of a Postgres server to an S3 bucket."
 LABEL org.label-schema.vcs-url="https://github.com/ferdn4ndo/s3-postgres-backup"
-LABEL org.label-schema.usage="/backup/README.md"
+LABEL org.label-schema.usage="/README.md"
 LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -d --rm --env-file ./.env ferdn4ndo/s3-postgres-backup"
 LABEL org.label-schema.docker.cmd.devel="docker run --rm --env-file ./.env -v ./scripts:/backup/scripts ferdn4ndo/s3-postgres-backup"
 LABEL org.label-schema.docker.cmd.test="docker run --rm --env-file ./.env ferdn4ndo/s3-postgres-backup tests.sh"
 
-WORKDIR /backup
+WORKDIR /scripts
 
 RUN apk update \
     && apk add -v bash \
@@ -33,10 +33,6 @@ RUN apk update \
     && apk upgrade -f -v \
     && rm -rf /var/cache/apk/*
 
-ADD entrypoint.sh entrypoint.sh
-
-ADD scripts ./scripts
-
-RUN chmod +x entrypoint.sh
+ADD ./scripts /scripts
 
 ENTRYPOINT ["sh", "entrypoint.sh"]
