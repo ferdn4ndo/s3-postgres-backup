@@ -288,7 +288,7 @@ Default: *EMPTY*
 
 ## Testing
 
-The repository pipelines include testing for code leaks at [.github/workflows/test_code_leaks.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_leaks.yaml), testing for package vulnerabilities at [.github/workflows/test_grype_scan.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_grype_scan.yaml), testing for code quality at [.github/workflows/test_code_quality.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_quality.yaml), and UTs (which will call the `run_*_tests.sh` scripts) + E2E functional tests at [.github/workflows/test_ut_e2e.yaml](https://github.com/ferdn4ndo/docker-containers-monitor/blob/main/.github/workflows/test_ut_e2e.yaml), which are described in the sections below.
+The repository pipelines include testing for code leaks at [.github/workflows/test_code_leaks.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_leaks.yaml), testing for package vulnerabilities at [.github/workflows/test_grype_scan.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_grype_scan.yaml), testing for code quality at [.github/workflows/test_code_quality.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_code_quality.yaml), and UTs (which will call the `run_*_tests.sh` scripts) + E2E functional tests at [.github/workflows/test_ut_e2e.yaml](https://github.com/ferdn4ndo/s3-postgres-backup/blob/main/.github/workflows/test_ut_e2e.yaml), which are described in the sections below.
 
 ### Unit Tests (UTs)
 
@@ -303,7 +303,7 @@ docker compose up --build --remove-orphans
 Then, after the container is up and running, execute this command in the terminal to run the test script inside the `s3-postgres-backup` container:
 
 ```bash
-docker exec -it docker-containers-monitor sh -c "./run_unit_tests.sh"
+docker exec -it s3-postgres-backup sh -c "./run_unit_tests.sh"
 ```
 
 The script will successfully execute if all the tests have passed or will abort with an error otherwise. The output is verbose, give a check.
@@ -321,7 +321,7 @@ docker compose up --build --remove-orphans
 Then, after both containers are up and running, run the test script inside the `s3-postgres-backup` container:
 
 ```bash
-docker exec -it docker-containers-monitor sh -c "./run_e2e_tests.sh"
+docker exec -it s3-postgres-backup sh -c "./run_e2e_tests.sh"
 ```
 
 The script will execute with success if all the tests have passed or will abort with an error otherwise. The output is verbose, give a check.
