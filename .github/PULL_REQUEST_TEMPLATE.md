@@ -1,6 +1,6 @@
 <!--
 Please use the content below as a template for your pull request.
-Feel free to remove sections which do not make sense.
+Feel free to remove sections that do not make sense.
 -->
 
 ## Scope
