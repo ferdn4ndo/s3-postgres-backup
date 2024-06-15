@@ -6,7 +6,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     reviewers:
       - ferdn4ndo
     assignees:
@@ -15,7 +15,7 @@ updates:
   - package-ecosystem: docker
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
     reviewers:
       - ferdn4ndo
     assignees:
