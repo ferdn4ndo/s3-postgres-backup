@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.20
 LABEL maintaner="Fernando Constantino <const.fernando@gmail.com>"
 
 ARG BUILD_DATE
@@ -23,7 +23,7 @@ RUN apk update \
     && apk add -v bash \
     && apk add -v coreutils \
     && apk add -v postgresql-client \
-    && apk add -v python3 py3-pip py3-six && pip install awscli && apk del py3-pip \
+    && apk add -v aws-cli \
     && apk add -v openssl \
     && apk add -v curl \
     && apk add -v xz \

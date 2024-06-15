@@ -1,12 +1,6 @@
 ignore:
-  # False positive - Check for CVE-2022-46908 at https://www.sqlite.org/cves.html
-  - vulnerability: CVE-2022-46908
-    package:
-      name: sqlite-libs
-      version: 3.40.1-r0
-  # Not going to be fixed - check https://github.com/python/cpython/issues/45385
-  - vulnerability: CVE-2007-4559
   # Not going to be fixed - check https://security-tracker.debian.org/tracker/CVE-2016-2781
   - vulnerability: CVE-2016-2781
-  # Still not fixed - check https://security-tracker.debian.org/tracker/CVE-2023-24329
-  - vulnerability: CVE-2023-24329
+  # Still not fixed - coming from Alpine 3.20
+  - vulnerability: CVE-2022-32511
+  - vulnerability: CVE-2024-4030
