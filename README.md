@@ -1,6 +1,7 @@
 # S3 Postgres Backup
 
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/ferdn4ndo/s3-postgres-backup/latest)](https://hub.docker.com/r/ferdn4ndo/s3-postgres-backup)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ferdn4ndo/s3-postgres-backup.svg)](https://hub.docker.com/r/ferdn4ndo/s3-postgres-backup/)
 [![E2E test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_ut_e2e.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![GitLeaks test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_code_leaks.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
 [![Grype test status](https://github.com/ferdn4ndo/s3-postgres-backup/actions/workflows/test_grype_scan.yaml/badge.svg?branch=main)](https://github.com/ferdn4ndo/s3-postgres-backup/actions)
@@ -292,7 +293,7 @@ The repository pipelines include testing for code leaks at [.github/workflows/te
 
 ### Unit Tests (UTs)
 
-To execute the UTs, make sure that both the `s3-postgres-backup` container is up and running.
+To execute the UTs, make sure that the `s3-postgres-backup` container is up and running.
 
 This can be achieved by running the `docker-compose.yaml` file:
 
@@ -328,7 +329,7 @@ The script will execute with success if all the tests have passed or will abort 
 
 ## Contributing
 
-If you faced an issue or would like to have a new feature, open an issue in this repository. Please describe your request as detailed as possible (remember to attach binary/big files externally), and wait for feedback. If you're familiar with software development, feel free to open a Pull Request with the suggested solution.
+If you face an issue or would like to have a new feature, open an issue in this repository. Please describe your request as detailed as possible (remember to attach binary/big files externally), and wait for feedback. If you're familiar with software development, feel free to open a Pull Request with the suggested solution.
 
 Any help is appreciated! Feel free to review, open an issue, fork, and/or open a PR. Contributions are welcomed!
 
