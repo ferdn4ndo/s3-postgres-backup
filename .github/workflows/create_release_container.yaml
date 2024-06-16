@@ -36,12 +36,3 @@ jobs:
 
       - name: Push the latest Docker image to the registry
         run: docker push ferdn4ndo/s3-postgres-backup:latest
-
-      - name: Login to GitHub Container Repository (GHCR)
-        run: echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Tag the versioned GHCR Docker image
-        run: docker tag ferdn4ndo/s3-postgres-backup:latest ghcr.io/ferdn4ndo/s3-postgres-backup:${{ steps.slug.outputs.version }}
-
-      - name: Push the versioned GHCR Docker image to the registry
-        run: docker push ghcr.io/ferdn4ndo/s3-postgres-backup:${{ steps.slug.outputs.version }}
