@@ -337,7 +337,7 @@ Any help is appreciated! Feel free to review, open an issue, fork, and/or open a
 
 [ferdn4ndo](https://github.com/ferdn4ndo)
 
-The acknowledgements are also extended to the original [postgresql-backup-s3](https://github.com/itbm/postgresql-backup-s3) contributors:
+The acknowledgments are also extended to the original [postgresql-backup-s3](https://github.com/itbm/postgresql-backup-s3) contributors:
 
 [itbm](https://github.com/itbm)
 
