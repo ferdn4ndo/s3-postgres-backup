@@ -52,7 +52,7 @@ jobs: # Docs: <https://git.io/JvxXE>
         run: cat ./.grype.yaml && cp .grype.yaml ~/
 
       - name: Scan image
-        uses: anchore/scan-action@v3 # action page: <https://github.com/anchore/scan-action>
+        uses: anchore/scan-action@v4 # action page: <https://github.com/anchore/scan-action>
         id: scan
         with:
           image: s3-postgres-backup:local
