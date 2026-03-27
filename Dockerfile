@@ -19,18 +19,21 @@ LABEL org.label-schema.docker.cmd.test="docker run --rm --env-file ./.env ferdn4
 
 WORKDIR /scripts
 
+# Upgrade base, install deps, then upgrade again so newly pulled packages (e.g. aws-cli → python3) get latest apk revisions.
 RUN apk update \
-    && apk add -v bash \
-    && apk add -v coreutils \
-    && apk add -v postgresql-client \
-    && apk add -v aws-cli \
-    && apk add -v openssl \
-    && apk add -v curl \
-    && apk add -v xz \
-    && curl -L --insecure https://github.com/odise/go-cron/releases/download/v0.0.6/go-cron-linux.gz | zcat > /usr/local/bin/go-cron && chmod u+x /usr/local/bin/go-cron \
+    && apk upgrade -Ua \
+    && apk add --no-cache \
+        bash \
+        coreutils \
+        postgresql-client \
+        aws-cli \
+        openssl \
+        curl \
+        xz \
+    && curl -L --insecure https://github.com/odise/go-cron/releases/download/v0.0.6/go-cron-linux.gz | zcat > /usr/local/bin/go-cron \
+    && chmod u+x /usr/local/bin/go-cron \
     && apk del curl \
-    && apk update \
-    && apk upgrade -f -v \
+    && apk upgrade -Ua \
     && rm -rf /var/cache/apk/*
 
 ADD ./scripts /scripts
