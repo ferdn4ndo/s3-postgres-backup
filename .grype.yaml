@@ -4,3 +4,26 @@ ignore:
   # Still not fixed - coming from Alpine 3.20
   - vulnerability: CVE-2022-32511
   - vulnerability: CVE-2024-4030
+
+  # Alpine 3.23 stable: no fixed apk revision yet for these (python3 via aws-cli, busybox, openssl family).
+  # Drop entries after `apk upgrade` / Grype shows them cleared.
+  - vulnerability: CVE-2025-11468
+  - vulnerability: CVE-2025-12084
+  - vulnerability: CVE-2025-12781
+  - vulnerability: CVE-2025-13462
+  - vulnerability: CVE-2025-13836
+  - vulnerability: CVE-2025-13837
+  - vulnerability: CVE-2025-15282
+  - vulnerability: CVE-2025-15366
+  - vulnerability: CVE-2025-15367
+  - vulnerability: CVE-2025-6075
+  - vulnerability: CVE-2025-60876
+  - vulnerability: CVE-2026-0672
+  - vulnerability: CVE-2026-0865
+  - vulnerability: CVE-2026-1299
+  - vulnerability: CVE-2026-2297
+  - vulnerability: CVE-2026-2673
+  - vulnerability: CVE-2026-3479
+  - vulnerability: CVE-2026-3644
+  - vulnerability: CVE-2026-4224
+  - vulnerability: CVE-2026-4519
