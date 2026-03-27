@@ -1,8 +1,9 @@
 version: '3'
 services:
   postgres:
+    image: postgres:18-alpine
     container_name: postgres
-    image: postgres:16-alpine
+    restart: unless-stopped
     env_file:
       - ./.env
     environment:
@@ -22,6 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: s3-postgres-backup
+    restart: unless-stopped
     env_file:
       - ./.env
     volumes:

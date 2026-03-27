@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.23
 LABEL maintaner="Fernando Constantino <const.fernando@gmail.com>"
 
 ARG BUILD_DATE
