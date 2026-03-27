@@ -16,7 +16,7 @@ on:
 jobs: # Docs: <https://git.io/JvxXE>
   run-ats:
     name: Run the Unit Tests (UTs) and the End-to-End (E2E) Automated Test (AT)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     services:
       # Label used to access the service container
       postgres:
