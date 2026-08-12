@@ -32,7 +32,9 @@ RUN apk update \
         xz \
     && curl -L --insecure https://github.com/odise/go-cron/releases/download/v0.0.6/go-cron-linux.gz | zcat > /usr/local/bin/go-cron \
     && chmod u+x /usr/local/bin/go-cron \
-    && apk del curl \
+    && apk add --no-cache py3-pip \
+    && pip3 install --break-system-packages --upgrade 'urllib3>=2.7.0' 'cryptography>=48.0.1' \
+    && apk del curl py3-pip \
     && apk upgrade -Ua \
     && rm -rf /var/cache/apk/*
 

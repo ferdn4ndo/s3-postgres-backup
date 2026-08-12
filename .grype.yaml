@@ -58,3 +58,32 @@ ignore:
   - vulnerability: CVE-2026-9669
     reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
     expires: "2026-09-30"
+  - vulnerability: CVE-2026-8328
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-12003
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-54133
+    reason: "Alpine 3.24 py3-jmespath — no fixed apk revision published"
+    expires: "2026-09-30"
+
+  # New python3 CVEs surfaced in Grype DB (Aug 2026); no apk fix yet.
+  - vulnerability: CVE-2026-0864
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-4360
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-6879
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-11940
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-11972
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
+  - vulnerability: CVE-2026-15308
+    reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
+    expires: "2026-09-30"
