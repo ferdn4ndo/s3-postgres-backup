@@ -24,6 +24,6 @@ jobs: # Docs: <https://git.io/JvxXE>
           fetch-depth: 0
 
       - name: Check for GitLeaks
-        uses: gitleaks/gitleaks-action@v2 # Action page: <https://github.com/gitleaks/gitleaks-action>
+        uses: gitleaks/gitleaks-action@v3 # Action page: <https://github.com/gitleaks/gitleaks-action>
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
