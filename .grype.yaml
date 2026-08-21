@@ -87,3 +87,6 @@ ignore:
   - vulnerability: CVE-2026-15308
     reason: "Alpine 3.24 python3 3.12.x — no fixed apk revision published"
     expires: "2026-09-30"
+  - vulnerability: CVE-2026-14456
+    reason: "Alpine 3.24 OpenSSL 3.5.7-r0 — no fixed apk revision published"
+    expires: "2026-09-30"
